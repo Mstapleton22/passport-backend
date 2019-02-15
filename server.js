@@ -3,14 +3,12 @@ const app = express()
 const environment = process.env.NODE_ENV || 'development'
 const knexConfig = require('./knexfile.js')[environment]
 const knex = require('knex')(knexConfig)
-// const cors = require('cors')
 const port = process.env.PORT || 3001
 const bodyParser = require('body-parser')
 
-const url = process.env.URL
+// const url = process.env.URL
 
 app.use(bodyParser.json())
-// app.use(cors())
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
 
