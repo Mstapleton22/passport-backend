@@ -1,0 +1,26 @@
+{
+  "name": "passport-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mstapleton22/passport-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mstapleton22/passport-backend/issues"
+  },
+  "homepage": "https://github.com/Mstapleton22/passport-backend#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "knex": "^0.16.3"
+  }
+}
