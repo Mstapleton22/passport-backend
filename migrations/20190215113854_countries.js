@@ -2,6 +2,7 @@ exports.up = (knex, Promise) => {
   return Promise.all([
     knex.schema.createTable('traveler', table => {
       table.increments('id')
+      table.text('picture').notNullable().defaultsTo('')
       table.string('first_name').notNullable().defaultsTo('')
       table.string('last_name').notNullable().defaultsTo('')
       table.string('nationality').notNullable().defaultsTo('')

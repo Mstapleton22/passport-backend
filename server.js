@@ -5,10 +5,12 @@ const knexConfig = require('./knexfile.js')[environment]
 const knex = require('knex')(knexConfig)
 const port = process.env.PORT || 3001
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 // const url = process.env.URL
 
 app.use(bodyParser.json())
+app.use(cors())
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
 
@@ -56,6 +58,47 @@ app.get('/traveler/:id', (req, res, next) => {
     })
     .then((rows) => res.send(rows))
     .catch((err) => next(err))
+})
+
+app.patch('/trips/:id', (req, res, next) => {
+  knex('trips').update(req.body).where('id', req.params.id).returning('*')
+    .then((rows) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      next(err);
+    });
+})
+
+app.post('/trips', (req, res, next) => {
+  knex('trips').insert(req.body)
+    .then((rows) => {
+      res.send('created a trip')
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
+app.post('/countries', (req, res, next) => {
+  knex('countries').insert(req.body)
+    .then((rows) => {
+      res.send('created a trip')
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
+app.delete('/trips/:id', (req, res, next) => {
+  knex('trips').where({ 'id': req.params.id })
+    .del(req.body)
+    .then((trips) => {
+      res.send('trip deleted')
+    })
+    .catch((err) => {
+      next(err)
+    })
 })
 
 app.use((req, res, next) => {
